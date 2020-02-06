@@ -15,6 +15,7 @@ const Current = ({city}) => {
       const {current: {temperature, feels_like}} = weather;
       return (
         <div className="currentWeather__Temp">
+          <h5>{city}</h5>
           <div>{temperature}</div>
           <div className="currentWeather__Feel">feels like: {feels_like}</div>
         </div>

@@ -7,7 +7,6 @@ class CityForm extends Component {
 
     handleSumit = e => {
         e.preventDefault();
-        console.log(this.state.location)
         this.setState({
             location: ''
         });
@@ -15,7 +14,6 @@ class CityForm extends Component {
     };
 
     handleChange = e => {
-        console.log(e.target.value)
         this.setState({
             location: e.target.value
         });
