@@ -14,21 +14,6 @@ export default class Weather extends Component {
     };
     render() {
         const {cityCountry} = this.state;
-        console.log(cityCountry)
-        /* const handleSumit = e => {
-            e.preventDefault();
-            this.setState({
-                cityCountry: this.state.inputValue
-            })
-        };
-        const handleChange = e => {
-            console.log(e.target.value)
-            const value = e.target.value;
-            this.setState({
-                cityCountry: '',
-                inputValue: value
-            });
-        }; */
 
         return (
             <React.Fragment>
