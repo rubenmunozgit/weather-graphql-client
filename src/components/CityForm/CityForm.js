@@ -1,4 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
+
+class CityForm extends Component {
+    state = {
+        location: ''
+    };
+
+    handleSumit = e => {
+        e.preventDefault();
+        console.log(this.state.location)
+        this.setState({
+            location: ''
+        });
+        this.props.handleSumit(this.state.location);
+    };
+
+    handleChange = e => {
+        console.log(e.target.value)
+        this.setState({
+            location: e.target.value
+        });
+    };
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleSumit}>
+                    <input
+                        name="city"
+                        type="text"
+                        value={this.state.location}
+                        onChange={this.handleChange} />
+                    <button>Get Weather</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+export default CityForm;
+
+
+/* import React from 'react'
 
 const CityForm = ({city, handleSumit, handleChange}) => {
     return (
@@ -15,3 +57,4 @@ const CityForm = ({city, handleSumit, handleChange}) => {
     )
 };
 export default CityForm
+ */
