@@ -5,17 +5,20 @@ import './Weather.css';
 
 export default class Weather extends Component {
     state = {
-        cityCountry: '',
-        inputValue: ''
+        cityCountry: ''
     }
+    handleSumit = searchCity => {
+        this.setState({
+            cityCountry: searchCity
+        })
+    };
     render() {
         const {cityCountry} = this.state;
         console.log(cityCountry)
-        const handleSumit = e => {
+        /* const handleSumit = e => {
             e.preventDefault();
             this.setState({
-                cityCountry: this.state.inputValue,
-                inputValue: ''
+                cityCountry: this.state.inputValue
             })
         };
         const handleChange = e => {
@@ -25,14 +28,12 @@ export default class Weather extends Component {
                 cityCountry: '',
                 inputValue: value
             });
-        };
+        }; */
 
         return (
             <React.Fragment>
                 <CityForm 
-                    handleSumit={handleSumit} 
-                    handleChange={handleChange} 
-                    city={this.state.inputValue}/>
+                    handleSumit={this.handleSumit} />
                 {cityCountry && <Current 
                     city={this.state.cityCountry}/>}
             </React.Fragment>
