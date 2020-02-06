@@ -1,24 +1,41 @@
-import React from 'react';
-import { useQuery } from "@apollo/react-hooks";
-import {GET_WEATHER} from '../../graphql/weatherQueries';
+import React, { Component } from 'react';
+import Current from '../Current/Current';
+import CityForm from '../CityForm/CityForm';
 import './Weather.css';
 
-
-const Weather = props => {
-    const { loading, error, data } = useQuery(GET_WEATHER);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-    if (data) {
-      console.log(data)
-      const {weather} = data;
-      const {current: {temperature, feels_like}} = weather;
-      return (
-        <div className="currentWeather__Temp">
-          <div>{temperature}</div>
-          <div className="currentWeather__Feel">feels like: {feels_like}</div>
-        </div>
-      )
+export default class Weather extends Component {
+    state = {
+        cityCountry: '',
+        inputValue: ''
     }
-  }
+    render() {
+        const {cityCountry} = this.state;
+        console.log(cityCountry)
+        const handleSumit = e => {
+            e.preventDefault();
+            this.setState({
+                cityCountry: this.state.inputValue,
+                inputValue: ''
+            })
+        };
+        const handleChange = e => {
+            console.log(e.target.value)
+            const value = e.target.value;
+            this.setState({
+                cityCountry: '',
+                inputValue: value
+            });
+        };
 
-  export default Weather;
+        return (
+            <React.Fragment>
+                <CityForm 
+                    handleSumit={handleSumit} 
+                    handleChange={handleChange} 
+                    city={this.state.inputValue}/>
+                {cityCountry && <Current 
+                    city={this.state.cityCountry}/>}
+            </React.Fragment>
+        );
+    }
+}

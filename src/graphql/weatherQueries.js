@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_WEATHER = gql`
-  {
-    weather(city: "Berlin, DE") {
+  query weather($city: String!) {
+    weather(city: $city) {
       current {
         temperature,
         feels_like
